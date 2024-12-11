@@ -1,0 +1,64 @@
+Microsoft (R) Macro Assembler Version 5.00                  5/22/23 10:14:56
+                                                             Page     1-1
+
+
+       1 0000				DATA SEGMENT 
+       2 0000  35 78 85			DD1 DB 35H, 78H, 85H 
+       3 0003  ??			DD2 DB ? 
+       4 0004				DATA ENDS 
+       5 0000				CODE SEGMENT 
+       6 0000				MAIN PROC FAR 
+       7				ASSUME CS:CODE,DS:DATA 
+       8 0000  1E			START: PUSH DS 
+       9 0001  2B C0			SUB AX, AX 
+      10 0003  50			PUSH AX 
+      11 0004  B8 ---- R		MOV AX, DATA 
+      12 0007  8E D8			MOV DS, AX 
+      13 0009  A0 0000 R		MOV AL, DD1 
+      14 000C  3A 06 0001 R		cmp AL, DD1+1 
+      15 0010  77 03			JA AAA1 
+      16 0012  A0 0001 R		MOV AL, DD1+1 
+      17 0015  3A 06 0002 R		AAA1: CMP AL, DD1+2 
+      18 0019  77 03			JA AAA2 
+      19 001B  A0 0002 R		MOV AL, DD1+2 
+      20 001E  A2 0003 R		AAA2: MOV DD2, AL 
+      21 0021  CB			RET 
+      22 0022				MAIN ENDP 
+      23 0022				CODE ENDS 
+      24				END START 
+Microsoft (R) Macro Assembler Version 5.00                  5/22/23 10:14:56
+                                                             Symbols-1
+
+
+Segments and Groups:
+
+                N a m e         	Length	 Align	Combine Class
+
+CODE . . . . . . . . . . . . . .  	0022	PARA	NONE	
+DATA . . . . . . . . . . . . . .  	0004	PARA	NONE	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+AAA1 . . . . . . . . . . . . . .  	L NEAR	0015	CODE
+AAA2 . . . . . . . . . . . . . .  	L NEAR	001E	CODE
+
+DD1  . . . . . . . . . . . . . .  	L BYTE	0000	DATA
+DD2  . . . . . . . . . . . . . .  	L BYTE	0003	DATA
+
+MAIN . . . . . . . . . . . . . .  	F PROC	0000	CODE	Length = 0022
+
+START  . . . . . . . . . . . . .  	L NEAR	0000	CODE
+
+@FILENAME  . . . . . . . . . . .  	TEXT  f		
+
+
+     24 Source  Lines
+     24 Total   Lines
+     10 Symbols
+
+  49804 + 451876 Bytes symbol space free
+
+      0 Warning Errors
+      0 Severe  Errors

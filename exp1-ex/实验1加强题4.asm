@@ -1,0 +1,10 @@
+mov si,1000
+mov di,2000
+mov cx,0f
+lop:mov al,[si]
+mov [di],al
+inc si
+inc di
+loop lop
+dec cx
+int 20

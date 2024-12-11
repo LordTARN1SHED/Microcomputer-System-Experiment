@@ -1,0 +1,74 @@
+Microsoft (R) Macro Assembler Version 5.00                  5/22/23 11:51:34
+                                                             Page     1-1
+
+
+       1 0000				DATA SEGMENT 
+       2 0000  50 6C 65 61 73 65 20	NOTIC DB "Please input the word !",0AH,
+					0DH 
+       3       69 6E 70 75 74 20 74	
+       4       68 65 20 77 6F 72 64	
+       5       20 21 0A 0D		
+       6 0019				DATA ENDS 
+       7 0000				CODE SEGMENT 
+       8				ASSUME CS:CODE,DS:DATA 
+       9 0000  B8 ---- R		START: MOV AX,DATA 
+      10 0003  8E D8			MOV DS,AX 
+      11 0005  B9 0019			MOV CX,19H 
+      12 0008  8D 1E 0000 R		LEA BX,[NOTIC] 
+      13 000C  8A 17			AA0: MOV DL,[BX] 
+      14 000E  B4 02			MOV AH,2 
+      15 0010  CD 21			INT 21H 
+      16 0012  43			INC BX 
+      17 0013  E2 F7			LOOP AA0 
+      18 0015  B4 01			AA1: MOV AH,1 
+      19 0017  CD 21			INT 21H 
+      20 0019  3C 1B			CMP AL,1BH 
+      21 001B  74 12			JZ AA3 
+      22 001D  3C 61			CMP AL,61H 
+      23 001F  78 06			JS AA2 
+      24 0021  3C 7A			CMP AL,7AH 
+      25 0023  79 02			JNS AA2 
+      26 0025  2C 20			SUB AL,20H 
+      27 0027  8A D0			AA2: MOV DL,AL 
+      28 0029  B4 02			MOV AH,2 
+      29 002B  CD 21			INT 21H 
+      30 002D  E2 E6			LOOP AA1 
+      31 002F  B4 4C			AA3: MOV AH,4CH 
+      32 0031  CD 21			INT 21H 
+      33 0033				CODE ENDS 
+      34				END START 
+Microsoft (R) Macro Assembler Version 5.00                  5/22/23 11:51:34
+                                                             Symbols-1
+
+
+Segments and Groups:
+
+                N a m e         	Length	 Align	Combine Class
+
+CODE . . . . . . . . . . . . . .  	0033	PARA	NONE	
+DATA . . . . . . . . . . . . . .  	0019	PARA	NONE	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+AA0  . . . . . . . . . . . . . .  	L NEAR	000C	CODE
+AA1  . . . . . . . . . . . . . .  	L NEAR	0015	CODE
+AA2  . . . . . . . . . . . . . .  	L NEAR	0027	CODE
+AA3  . . . . . . . . . . . . . .  	L NEAR	002F	CODE
+
+NOTIC  . . . . . . . . . . . . .  	L BYTE	0000	DATA
+
+START  . . . . . . . . . . . . .  	L NEAR	0000	CODE
+
+@FILENAME  . . . . . . . . . . .  	TEXT  e		
+
+
+     31 Source  Lines
+     31 Total   Lines
+     10 Symbols
+
+  49804 + 451876 Bytes symbol space free
+
+      0 Warning Errors
+      0 Severe  Errors
